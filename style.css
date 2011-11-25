@@ -1,0 +1,35 @@
+/**
+ * PageLines Base *Starter* Section
+ *
+ * Use this section as a starter for section development. 
+ * It contains some inline documentation to help you through the process and APIs
+ * 
+ * This file, style.css, will be auto-loaded by the section. 
+ * 
+ * For more information see developer documentation on PageLines.com
+ *
+ * @package PageLines
+ */
+
+
+/*
+	Custom CSS Tips
+	1. Specificity 
+		- If your custom rules aren't taking effect, try adding increased specificity. 
+		- To do this, you can add '.custom' or 'body' out in front of any other rule. 
+		- If it still doesn't work, use an id (e.g. #page) as it has more specificity.
+
+		
+*/
+
+/* @ Pullquote Section */
+
+.pullquote {
+	padding: 20px 20px 20px 25px;
+	margin: 1em 0 1.5em;
+}
+
+	.pullquote .thepullquote{font-size: 1.5em;margin-bottom: 5px;line-height: 1.3em;}
+	.pullquote .thecitation{ font-style: italic;padding-left: 15px;}
+
+		.pullquote,.pullquote a{text-shadow: none;}
