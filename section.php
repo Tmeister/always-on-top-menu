@@ -1,11 +1,11 @@
 <?php
 /*
-Section: Base Section (Pullquote)
-Author: PageLines
-Author URI: http://www.pagelines.com
-Version: 1.2.0
-Description: PageLines Starter Section (Includes "Pull Quote" Example)
-Class Name: PageLinesPullQuote
+Section: Menu always On Top
+Author: Enrique Chavez
+Author URI: http://tmeister.net
+Version: 0.1
+Description: always On Top 
+Class Name: TmalwaysOnTop
 Cloning: true
 */
 
@@ -26,26 +26,7 @@ Cloning: true
  *
  */
 
-/**
- *
- * Section Class Setup
- * 
- * Name your section class whatever you want, just make sure it matches the 
- * "Class Name" in the section meta (above)
- * 
- * File Naming Conventions
- * -------------------------------------
- *  section.php 		- The primary php loader for the section.
- *  style.css 			- Basic CSS styles contains all structural information, no color (autoloaded)
- *  images/				- Image folder. 
- *  thumb.png			- Primary branding graphic (300px by 225px - autoloaded)
- *  screenshot.png		- Primary Screenshot (300px by 225px)
- *  screenshot-1.png 	- Additional screenshots: (screenshot-1.png -2 -3 etc...optional).
- *  icon.png			- Portable icon format (16px by 16px)
- *	color.less			- Computed color control file (autoloaded)
- *
- */
-class PageLinesPullQuote extends PageLinesSection {
+class TmalwaysOnTop extends PageLinesSection {
 
 	/**
 	 *
@@ -66,164 +47,223 @@ class PageLinesPullQuote extends PageLinesSection {
 	 * 		$this->template_type	- The PageLines template type
 	 */
 
-	/**
-	 *
-	 * Section API - Methods & Functions
-	 * 
-	 * Below we'll give you a listing of all the available 
-	 * Section 'methods' or functions, and other techniques.
-	 * 
-	 * Please reference other PageLines sections for ideas/tips on how
-	 * to use more advanced functionality.
-	 *
-	 */
-
-		/**
-		 *
-		 * Persistent Section Code 
-		 * 
-		 * Use the 'section_persistent()' function to add code that will run on every page in your site & admin
-		 * Code here will run ALL the time, and is useful for adding post types, options etc.. 
-		 *
-		 */
-		function section_persistent(){
+	function section_persistent(){
+		add_filter('pagelines_options_array', array($this, 'got_options'));
+	} 
+	function section_head(){
+		$back = (ploption('tm_always_on_top_main_bg', $this->oset) ) ? ploption('tm_always_on_top_main_bg', $this->oset) : '#ffffff';
 		
-		} 
+		$border = (ploption('tm_always_on_top_menu_border', $this->oset) ) ? ploption('tm_always_on_top_menu_border', $this->oset) : '#e0e0e0';
+		
+		$sub_bg = (ploption('tm_always_on_top_submenu_bg', $this->oset) ) ? ploption('tm_always_on_top_submenu_bg', $this->oset) : '#f4f4f4';
+		
+		$target = (ploption('tm_always_on_top_layout', $this->oset) == 'on') ? '.texture' : '.content';
+		
+		$shadow = (ploption('tm_always_on_top_shadow_bg', $this->oset) ) ? ploption('tm_always_on_top_shadow_bg', $this->oset) : '#909090';
+		
+		$link = (ploption('tm_always_on_top_link', $this->oset) ) ? ploption('tm_always_on_top_link', $this->oset) : '#707070';
+		
+		$link_hover = (ploption('tm_always_on_top_link_hover', $this->oset) ) ? ploption('tm_always_on_top_link_hover', $this->oset) : '#000000';
 
-		/**
-		 *
-		 * Site Head Section Code 
-		 * 
-		 * Code added in the 'section_head()' function will be run during the <head> element of your site's
-		 * 'front-end' pages. You can use this to add custom Javascript, or manually add scripts & meta information
-		 * It will *only* be loaded if the section is present on the page template.
-		 *
-		 */
-		function section_head(){
-			
-			
-		} 
+		$font_size = (ploption('tm_always_on_top_font_size', $this->oset) ) ? ploption('tm_always_on_top_font_size', $this->oset) : '14';
 
-		/**
-		 *
-		 * Section Template
-		 * 
-		 * The 'section_template()' function is the most important section function. 
-		 * Use this function to output all the HTML for the section on pages/locations where it's placed.
-		 * 
-		 * Here we've included some example processing and output for a 'Pull Quote' section.
-		 *
-		 */
-	 	function section_template( $clone_id = null ) { 
-			
-			// Setup Options Values
-			$text = ( ploption('pullquote_text', $this->oset) ) ? ploption('pullquote_text', $this->oset) : false;
-			$cite = ( ploption('pullquote_cite', $this->oset) ) ? ploption('pullquote_cite', $this->oset) : false;
-			$cite_url = ( ploption('pullquote_cite_link', $this->oset) ) ? ploption('pullquote_cite_link', $this->oset) : false;
+		$submenu_font_size = (ploption('tm_always_on_top_font_size_submenu', $this->oset) ) ? ploption('tm_always_on_top_font_size_submenu', $this->oset) : '12';
+		
 
-			
-			// If no text is set, show the default sections screen to admins and stop process
-			if( !$text ){
-				echo setup_section_notify( $this, 'Add Pullquote Text To Activate' );
-				return;
+		echo load_custom_font( ploption('tm_always_on_top_font', $this->oset), '.menu-always-on-top' );
+
+
+	?>
+		<style type="text/css" media="screen">
+			#<?=$this->id?> <?=$target?> {
+				border-top: 1px solid <?=$border?>;
+				border-bottom: 1px solid <?=$border?>;
+				background: <?=$back?>;
 			}
 
-			$citation = ($cite_url) ? sprintf('<a href="%s">%s</a>', $cite_url, $cite) : $cite;
-			
-			// Draw the HTML... 
-		?>
-	<div class="pullquote">
-		<div class="thepullquote">
-			<?php echo $text;?>
+			#<?=$this->id?> .content-pad {
+				padding: 0;
+			}
+
+			#<?=$this->id?>.fixed <?=$target?> {
+				border-bottom: 0;
+			}
+
+			#<?=$this->id?>.fixed {
+				position: fixed;
+				top: -5px;
+				left: 0;
+				width: 100%;
+
+				-webkit-box-shadow: 0 0 10px <?=$shadow?>;
+				-moz-box-shadow: 0 0 10px <?=$shadow?>;
+				box-shadow: 0 0 10px <?=$shadow?>;
+				background: <?=$back?>;
+				z-index: 9999;
+			}
+			ul.menu-always-on-top li ul{
+				border: 1px solid <?=$border?>;
+				background: <?=$sub_bg?>;
+			}
+			ul.menu-always-on-top li ul li{
+				background: <?=$sub_bg?>;
+			}
+			ul.menu-always-on-top li a{
+				color: <?=$link?>;
+				font-size: <?=$font_size?>px;
+			}
+			ul.menu-always-on-top li a:hover{
+				color: <?=$link_hover?>;	
+			}
+			ul.menu-always-on-top li ul li a{
+				font-size: <?=$submenu_font_size?>px;	
+			}
+			#<?=$this->id?> .righty{
+				float: right;	
+			}
+			#<?=$this->id?> .searchform {
+			    margin: 10px 5px 0px 0;
+			    width: 190px;
+			}
+			#<?=$this->id?> .searchform .searchfield{
+				padding:10px 30px 10px 7px;
+				color:#707070;
+				-webkit-border-radius:5px;
+				-moz-border-radius:5px;
+				border-radius:5px;
+				background-color:#f7f7f7;
+				border:1px solid #d5d5d5;
+			}
+			#<?=$this->id?> .searchform input.submit {
+			    top: 8px;
+			}
+		</style>
+		<script type="text/javascript">
+			jQuery(function($) {
+				var menu = $('#<?=$this->id?>'),
+				pos = menu.offset();
+				menu.addClass('default')
+				$(window).scroll(function(){
+					if($(this).scrollTop() > pos.top+menu.height() && menu.hasClass('default')){
+						menu.fadeOut('fast', function(){
+							$(this).removeClass('default').addClass('fixed').fadeIn('fast');
+						});
+					} else if($(this).scrollTop() <= pos.top && menu.hasClass('fixed')){
+						menu.fadeOut('fast', function(){
+							$(this).removeClass('fixed').addClass('default').fadeIn('fast');
+						});
+					}
+				});
+				$(window).scroll();
+			});
+		</script>
+	<?
+	}
+ 	function section_template( $clone_id = null ) {
+ 		$search = ploption('tm_always_on_top_search', $this->oset);
+ 		wp_nav_menu( array('menu_class'  => "menu-always-on-top default".pagelines_nav_classes(), 'container' => null, 'container_class' => '', 'depth' => 2, 'theme_location'=>'primary') );
+ 		if( ! $search ){return;}
+	?>
+		<div class="righty">
+			<?get_search_form()?>	
 		</div>
-		<?php if($cite): ?>
-			<div class="thecitation"> 
-				&mdash; <?php echo $citation;?>
-			</div>
-		<?php endif;?>
-	</div>
-<?php }
-	
-		/** 
-		 * For template code that should show before the standard section markup
-		 */
-		function before_section_template( $clone_id = null ){}
-
-		/** 
-		 * For template code that should show after the standard section markup
-		 */
-		function after_section_template( $clone_id = null ){}
-	
-	/**
-	 *
-	 * Using PageLines Options
-	 * -----------------------------------------------------------
-	 * PageLines options revolve around the ploption function. 
-	 * To use this function you provide two arguments as follows.
-	 * 
-	 * 	Usage: ploption( 'key', $args );
-	 * 		'key' - The key for the PageLines option 
-	 *  	$args - An array of variables for handling the option: 
-	 * 
-	 *			-  $args() list (optional): 
-	 * 				- 	'post_id'	- The global post or page id (required for page by page meta control)
-	 *				- 	'clone_id'	- The clone idea for the section (required to enable cloning)
-	 * 				Advanced
-	 *					- 	'setting'	- The WP setting field to pull the option from. 
-	 * 					- 	'subkey'	- For nested options
-	 * 
-	 * 
-	 */
-		
-		/**
-		 *
-		 * Section Page Options
-		 * 
-		 * Section optionator is designed to handle section options.
-		 */
-		function section_optionator( $settings ){
-			
-			// Compare w/ Optionator defaults. (Required, but doesn't change -- needed for cloning/special)
-			$settings = wp_parse_args($settings, $this->optionator_default);
-			
-			/**
-			 *
-			 * Section Page Options
-			 * 
-			 * Section optionator is designed to handle section cloning.
-			 */
-			$opt_array = array(
-				'pullquote_text' 	=> array(
-					'type' 			=> 'text',
-					'inputlabel'	=> 'Pullquote Text',
-					'title' 		=> 'Pullquote Text',
-					'shortexp'		=> 'The primary quote text for your pullquote',
+	<?
+ 	}
+ 	function got_options($options){
+		$options['always_on_top_menu'] = array(
+			'tm_always_on_top_layout' => array(
+				'version' 		=> 'pro',
+				'type'			=> 'check',
+				'title'			=> __('Layout', $this->domain),
+				'inputlabel'	=> __('Enable Full-Width', $this->domain),
+				'shortexp'		=> __('Select whether you want the menu background use the entire width of the page or just the content width.', $this->domain),
+				'exp'			=> __('If you select the content width, it will take the width selected according to the overall layout.', $this->domain)
+			),
+			'tm_always_on_top_search' => array(
+				'version'    	=> 'pro',
+				'type'       	=> 'check',
+				'inputlabel' 	=> 'Show search box',
+				'title'      	=> 'Search Box',
+				'exp'			=> 'Expppp',
+				'shortexp'   	=> 'Check to show a search box on the right of the menu'
+			),
+			'tm_always_on_top_font' => array(
+				'version' 	=> 'pro',
+				'type'		=> 'fonts',
+				'title'		=> 'Font Menu',
+				'shortexp'	=> 'Short',
+				'exp'		=> 'Expppp'
+			),
+			'tm_always_on_top_font_size' => array(
+				'version' 		=> 'pro',
+				'type'			=> 'count_select',
+				'title'			=> 'Font Menu Size',
+				'shortexp'		=> 'Short',
+				'exp'			=> 'Expppp',
+				'count_start'	=> 10, 
+ 				'count_number'	=> 20,
+			),
+			'tm_always_on_top_font_size_submenu' => array(
+				'version' 		=> 'pro',
+				'type'			=> 'count_select',
+				'title'			=> 'Font Sub Menu Size',
+				'shortexp'		=> 'Short',
+				'exp'			=> 'Expppp',
+				'count_start'	=> 10, 
+ 				'count_number'	=> 20,
+			),
+			'tm_always_on_top_background' =>	array(
+				'version' 		=> 'pro',
+				'type'			=> 'color_multi',
+				'layout'		=> 'full',
+				'title'			=> __('Menu Colors', $this->domain),
+				'shortexp'		=> __('Configure the colors to use.', $this->domain),
+				'selectvalues'	=> array(
+					'tm_always_on_top_main_bg'	=> array(				
+						'default' 		=> '#FFF',
+						'flag'			=> 'set_default',
+						'inputlabel' 	=> __( 'Menu Background', $this->domain ),
+						
+					),
+					'tm_always_on_top_menu_border'	=> array(				
+						'default' 		=> '#E0E0E0',
+						'flag'			=> 'set_default',
+						'inputlabel' 	=> __( 'Menu Border', $this->domain ),
+					),
+					'tm_always_on_top_submenu_bg'	=> array(				
+						'default' 		=> '#f4f4f4',
+						'flag'			=> 'set_default',
+						'inputlabel' 	=> __( 'Submenu Background', $this->domain ),
+					),
+					'tm_always_on_top_shadow_bg'	=> array(				
+						'default' 		=> '#909090',
+						'flag'			=> 'set_default',
+						'inputlabel' 	=> __( 'Menu Shadow', $this->domain ),
+					)
 				),
-				'pullquote_cite' => array(
-					'type' 			=> 'text',
-					'inputlabel'	=> 'Pullquote Citation Text',
-					'title' 		=> 'Pullquote Citation Text',
-					'shortexp'		=> 'Enter the name or citation for quote accreditation.',
-				), 
-				'pullquote_cite_link' => array(
-					'type' 			=> 'text',
-					'inputlabel'	=> 'Pullquote Citation URL',
-					'title' 		=> 'Pullquote Citation URL (optional)',
-					'shortexp'		=> 'Should the citation link somewhere? If so add the url here.',
-				)
-			);
-
-			$settings = array(
-				'id' 		=> $this->id.'_meta',
-				'name' 		=> $this->name,
-				'icon' 		=> $this->icon, 
-				'clone_id'	=> $settings['clone_id'], 
-				'active'	=> $settings['active']
-			);
-
-			register_metatab($settings, $opt_array);
-		}
-
-	
-	
-	} /* End of section class - No closing php tag needed */
+			),
+			'tm_always_on_top_type' =>	array(
+				'version' 		=> 'pro',
+				'type'			=> 'color_multi',
+				'layout'		=> 'full',
+				'exp'			=> __('Exp', $this->domain),
+				'title'			=> __('Menu Typography Color', $this->domain),
+				'shortexp'		=> __('Configure the colors to use.', $this->domain),
+				'selectvalues'	=> array(
+					'tm_always_on_top_link'	=> array(				
+						'default' 		=> '#707070',
+						'flag'			=> 'set_default',
+						'inputlabel' 	=> __( 'Link Color', $this->domain ),
+						
+					),
+					'tm_always_on_top_link_hover'	=> array(				
+						'default' 		=> '#000000',
+						'flag'			=> 'set_default',
+						'inputlabel' 	=> __( 'Link Hover Color', $this->domain ),
+					)
+				),
+			)
+		);
+		return $options;
+	}
+}

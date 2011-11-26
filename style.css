@@ -1,35 +1,89 @@
-/**
- * PageLines Base *Starter* Section
- *
- * Use this section as a starter for section development. 
- * It contains some inline documentation to help you through the process and APIs
- * 
- * This file, style.css, will be auto-loaded by the section. 
- * 
- * For more information see developer documentation on PageLines.com
- *
- * @package PageLines
- */
-
-
-/*
-	Custom CSS Tips
-	1. Specificity 
-		- If your custom rules aren't taking effect, try adding increased specificity. 
-		- To do this, you can add '.custom' or 'body' out in front of any other rule. 
-		- If it still doesn't work, use an id (e.g. #page) as it has more specificity.
-
-		
-*/
-
-/* @ Pullquote Section */
-
-.pullquote {
-	padding: 20px 20px 20px 25px;
-	margin: 1em 0 1.5em;
+ul.menu-allways-on-top li {
+	float: left;
 }
 
-	.pullquote .thepullquote{font-size: 1.5em;margin-bottom: 5px;line-height: 1.3em;}
-	.pullquote .thecitation{ font-style: italic;padding-left: 15px;}
+ul.menu-allways-on-top,ul.menu-allways-on-top li ul {
+	list-style: none;
+	z-index: 9998;
+}
 
-		.pullquote,.pullquote a{text-shadow: none;}
+ul.menu-allways-on-top li:last-child a {
+	background: none;
+}
+
+ul.menu-allways-on-top li a {
+	background: url(images/menu_sep.png) no-repeat right center;
+	display: table-cell;
+	height: 55px;
+	letter-spacing: 0.5px;
+	padding: 0 20px;
+	vertical-align: middle;
+
+	-webkit-transition: color 500ms ease-in;
+	-moz-transition: color 500ms ease-in;
+	-o-transition: color 500ms ease-in;
+	-ms-transition: color 500ms ease-in;
+	transition: color 500ms ease-in;
+}
+
+ul.menu-allways-on-top li a:hover {
+	-webkit-transition: color 500ms ease-in;
+	-moz-transition: color 500ms ease-in;
+	-o-transition: color 500ms ease-in;
+	-ms-transition: color 500ms ease-in;
+	transition: color 500ms ease-in;
+	;
+}
+
+/******************************************************************************
+ * Menu Depth 2
+ ******************************************************************************/
+ul.menu-allways-on-top li:hover ul {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	filter: alpha(opacity=100);
+	opacity: 1;
+
+	-webkit-transition: opacity 500ms linear;
+	-moz-transition: opacity 500ms linear;
+	-o-transition: opacity 500ms linear;
+	-ms-transition: opacity 500ms linear;
+	transition: opacity 500ms linear;
+	visibility: visible;
+}
+
+ul.menu-allways-on-top li ul {
+	padding: 0px;
+	position: absolute;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	filter: alpha(opacity=0);
+	opacity: 0;
+	width: 180px;
+	visibility: hidden;
+}
+
+ul.menu-allways-on-top li ul li {
+	float: left;
+	padding: 0 0 5px 0;
+}
+
+ul.menu-allways-on-top li ul li a {
+	width: 160px;
+	height: auto;
+	padding: 10px 0 0 20px;
+	background: none;
+
+	-webkit-transition: padding 200ms;
+	-moz-transition: padding 200ms;
+	-o-transition: padding 200ms;
+	-ms-transition: padding 200ms;
+	transition: padding 200ms;
+}
+
+ul.menu-allways-on-top li ul li a:hover {
+	padding: 10px 0 0 30px;
+	-webkit-transition: padding 200ms;
+	-moz-transition: padding 200ms;
+	-o-transition: padding 200ms;
+	-ms-transition: padding 200ms;
+	transition: padding 200ms;
+}
