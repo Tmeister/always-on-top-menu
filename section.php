@@ -4,52 +4,20 @@ Section: Menu always On Top
 Author: Enrique Chavez
 Author URI: http://tmeister.net
 Version: 0.1
-Description: always On Top 
+Description: Main menu, when the menu comes out of the visible area of the page automatically is fixed to the top of the screen, so it will be always present.
 Class Name: TmalwaysOnTop
-Cloning: true
+Cloning: false
+Workswith: header
+External: http://klr20mg.com/2011/11/26/menu-always-on-top/
+Long: 
 */
 
-/*
- * PageLines Headers API
- * 
- *  Sections support standard WP file headers (http://codex.wordpress.org/File_Header) with these additions:
- *  -----------------------------------
- * 	 - Section: The name of your section.
- *	 - Class Name: Name of the section class goes here, has to match the class extending PageLinesSection.
- *	 - Cloning: (bool) Enable cloning features.
- *	 - Depends: If your section needs another section loaded first set its classname here.
- *	 - Workswith: Comma seperated list of template areas the section is allowed in.
- *	 - Failswith: Comma seperated list of template areas the section is NOT allowed in.
- *	 - Demo: Use this to point to a demo for this product.
- *	 - External: Use this to point to an external overview of the product
- *	 - Long: Add a full description, used on the actual store page on http://www.pagelines.com/store/
- *
- */
-
 class TmalwaysOnTop extends PageLinesSection {
-
-	/**
-	 *
-	 * Section Variable Glossary (Auto Generated)
-	 * ------------------------------------------------
-	 *  $this->id			- The unique section slug & folder name
-	 *  $this->base_url 	- The root section URL
-	 *  $this->base_dir 	- The root section directory path
-	 *  $this->name 		- The section UI name
-	 *  $this->description	- The section description
-	 *  $this->images		- The root section images URL
-	 *  $this->icon 		- The section icon url
-	 *  $this->screen		- The section screenshot url 
-	 *  $this->oset			- Option settings array... needed for 'ploption' (contains clone_id, post_id)
-	 * 
-	 * 	Advanced Variables
-	 * 		$this->view				- If the section is viewed on a page, archive, or single post
-	 * 		$this->template_type	- The PageLines template type
-	 */
 
 	function section_persistent(){
 		add_filter('pagelines_options_array', array($this, 'got_options'));
 	} 
+	
 	function section_head(){
 		$back = (ploption('tm_always_on_top_main_bg', $this->oset) ) ? ploption('tm_always_on_top_main_bg', $this->oset) : '#ffffff';
 		
@@ -74,6 +42,9 @@ class TmalwaysOnTop extends PageLinesSection {
 
 
 	?>
+		<!--[if lt IE 9]>
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
 		<style type="text/css" media="screen">
 			#<?=$this->id?> <?=$target?> {
 				border-top: 1px solid <?=$border?>;
@@ -159,9 +130,16 @@ class TmalwaysOnTop extends PageLinesSection {
 		</script>
 	<?
 	}
+
  	function section_template( $clone_id = null ) {
- 		$search = ploption('tm_always_on_top_search', $this->oset);
- 		wp_nav_menu( array('menu_class'  => "menu-always-on-top default".pagelines_nav_classes(), 'container' => null, 'container_class' => '', 'depth' => 2, 'theme_location'=>'primary') );
+ 		if( has_nav_menu('primary') ){
+ 			$search = ploption('tm_always_on_top_search', $this->oset);
+ 			wp_nav_menu( array('menu_class'  => "menu-always-on-top default".pagelines_nav_classes(), 'container' => null, 'container_class' => '', 'depth' => 2, 'theme_location'=>'primary') );
+	 	}else{
+	 		echo setup_section_notify($this, 'Please, set up the "Primary Website Navigation" to show it in this section.', get_admin_url(). 'nav-menus.php', 'Configure Menu');
+	 		return;
+	 	}
+ 		
  		if( ! $search ){return;}
 	?>
 		<div class="righty">
@@ -169,6 +147,7 @@ class TmalwaysOnTop extends PageLinesSection {
 		</div>
 	<?
  	}
+
  	function got_options($options){
 		$options['always_on_top_menu'] = array(
 			'tm_always_on_top_layout' => array(
@@ -184,31 +163,31 @@ class TmalwaysOnTop extends PageLinesSection {
 				'type'       	=> 'check',
 				'inputlabel' 	=> 'Show search box',
 				'title'      	=> 'Search Box',
-				'exp'			=> 'Expppp',
-				'shortexp'   	=> 'Check to show a search box on the right of the menu'
+				'exp'			=> '',
+				'shortexp'   	=> 'Check to show a search box on the right of the menu.'
 			),
 			'tm_always_on_top_font' => array(
 				'version' 	=> 'pro',
 				'type'		=> 'fonts',
 				'title'		=> 'Font Menu',
-				'shortexp'	=> 'Short',
-				'exp'		=> 'Expppp'
+				'shortexp'	=> 'Select the font menu.',
+				'exp'		=> ''
 			),
 			'tm_always_on_top_font_size' => array(
 				'version' 		=> 'pro',
 				'type'			=> 'count_select',
-				'title'			=> 'Font Menu Size',
-				'shortexp'		=> 'Short',
-				'exp'			=> 'Expppp',
+				'title'			=> 'Menu Font Size',
+				'shortexp'		=> 'Select the font size of the main menu items.',
+				'exp'			=> '',
 				'count_start'	=> 10, 
  				'count_number'	=> 20,
 			),
 			'tm_always_on_top_font_size_submenu' => array(
 				'version' 		=> 'pro',
 				'type'			=> 'count_select',
-				'title'			=> 'Font Sub Menu Size',
-				'shortexp'		=> 'Short',
-				'exp'			=> 'Expppp',
+				'title'			=> 'Submenu Font Size',
+				'shortexp'		=> 'Select the font size of the submenu items.',
+				'exp'			=> '',
 				'count_start'	=> 10, 
  				'count_number'	=> 20,
 			),
