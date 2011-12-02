@@ -8,8 +8,9 @@ Description: Main menu, when the menu comes out of the visible area of the page 
 Class Name: TmalwaysOnTop
 Cloning: false
 Workswith: header
-External: http://klr20mg.com/2011/11/26/menu-always-on-top/
-Long: 
+External: http://pagelines.tmeister.net/menu-always-on-top/
+Demo: http://pagelines.tmeister.net/menu-always-on-top/
+Long: Main menu, when the menu comes out of the visible area of the page automatically is fixed to the top of the screen, so it will be always present.
 */
 
 class TmalwaysOnTop extends PageLinesSection {
