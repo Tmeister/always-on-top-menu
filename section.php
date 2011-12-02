@@ -14,37 +14,28 @@ Long:
 
 class TmalwaysOnTop extends PageLinesSection {
 
+	var $domain = 'tm_always_on_top';
+
 	function section_persistent(){
 		add_filter('pagelines_options_array', array($this, 'got_options'));
 	} 
 	
-	function section_head(){
-		$back = (ploption('tm_always_on_top_main_bg', $this->oset) ) ? ploption('tm_always_on_top_main_bg', $this->oset) : '#ffffff';
-		
-		$border = (ploption('tm_always_on_top_menu_border', $this->oset) ) ? ploption('tm_always_on_top_menu_border', $this->oset) : '#e0e0e0';
-		
-		$sub_bg = (ploption('tm_always_on_top_submenu_bg', $this->oset) ) ? ploption('tm_always_on_top_submenu_bg', $this->oset) : '#f4f4f4';
-		
-		$target = (ploption('tm_always_on_top_layout', $this->oset) == 'on') ? '.texture' : '.content';
-		
-		$shadow = (ploption('tm_always_on_top_shadow_bg', $this->oset) ) ? ploption('tm_always_on_top_shadow_bg', $this->oset) : '#909090';
-		
-		$link = (ploption('tm_always_on_top_link', $this->oset) ) ? ploption('tm_always_on_top_link', $this->oset) : '#707070';
-		
-		$link_hover = (ploption('tm_always_on_top_link_hover', $this->oset) ) ? ploption('tm_always_on_top_link_hover', $this->oset) : '#000000';
+	function section_head($clone_id = null){
 
-		$font_size = (ploption('tm_always_on_top_font_size', $this->oset) ) ? ploption('tm_always_on_top_font_size', $this->oset) : '14';
-
+		global $pagelines_ID;
+		$oset              = array('post_id' => $pagelines_ID, 'clone_id' => $clone_id);
+		
+		$back              = (ploption('tm_always_on_top_main_bg', $this->oset) ) ? ploption('tm_always_on_top_main_bg', $this->oset) : '#ffffff';
+		$border            = (ploption('tm_always_on_top_menu_border', $this->oset) ) ? ploption('tm_always_on_top_menu_border', $this->oset) : '#e0e0e0';
+		$sub_bg            = (ploption('tm_always_on_top_submenu_bg', $this->oset) ) ? ploption('tm_always_on_top_submenu_bg', $this->oset) : '#f4f4f4';
+		$target            = (ploption('tm_always_on_top_layout', $this->oset) == 'on') ? '.texture' : '.content';
+		$shadow            = (ploption('tm_always_on_top_shadow_bg', $this->oset) ) ? ploption('tm_always_on_top_shadow_bg', $this->oset) : '#909090';
+		$link              = (ploption('tm_always_on_top_link', $this->oset) ) ? ploption('tm_always_on_top_link', $this->oset) : '#707070';
+		$link_hover        = (ploption('tm_always_on_top_link_hover', $this->oset) ) ? ploption('tm_always_on_top_link_hover', $this->oset) : '#000000';
+		$font_size         = (ploption('tm_always_on_top_font_size', $this->oset) ) ? ploption('tm_always_on_top_font_size', $this->oset) : '14';
 		$submenu_font_size = (ploption('tm_always_on_top_font_size_submenu', $this->oset) ) ? ploption('tm_always_on_top_font_size_submenu', $this->oset) : '12';
-		
-
 		echo load_custom_font( ploption('tm_always_on_top_font', $this->oset), '.menu-always-on-top' );
-
-
 	?>
-		<!--[if lt IE 9]>
-			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-		<![endif]-->
 		<style type="text/css" media="screen">
 			#<?=$this->id?> <?=$target?> {
 				border-top: 1px solid <?=$border?>;
