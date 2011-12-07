@@ -99,6 +99,9 @@ class TmalwaysOnTop extends PageLinesSection {
 			}
 			#<?=$this->id?> .searchform input.submit {
 			    top: 8px;
+			    box-shadow:0px 0px 0px transparent;
+			    border:0px;
+
 			}
 		</style>
 		<script type="text/javascript">
@@ -108,12 +111,12 @@ class TmalwaysOnTop extends PageLinesSection {
 				menu.addClass('default')
 				$(window).scroll(function(){
 					if($(this).scrollTop() > pos.top+menu.height() && menu.hasClass('default')){
-						menu.fadeOut('fast', function(){
-							$(this).removeClass('default').addClass('fixed').fadeIn('fast');
+						menu.fadeOut('slow', function(){
+							$(this).removeClass('default').addClass('fixed').fadeIn('slow');
 						});
 					} else if($(this).scrollTop() <= pos.top && menu.hasClass('fixed')){
-						menu.fadeOut('fast', function(){
-							$(this).removeClass('fixed').addClass('default').fadeIn('fast');
+						menu.fadeOut('slow', function(){
+							$(this).removeClass('fixed').addClass('default').fadeIn('slow');
 						});
 					}
 				});

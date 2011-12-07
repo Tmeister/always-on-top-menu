@@ -84,3 +84,10 @@ ul.menu-always-on-top li ul li a:hover {
 	-ms-transition: padding 200ms;
 	transition: padding 200ms;
 }
+
+.menu-always-on-top .submit{
+    box-shadow: 0px 0px 0px !important;
+}
+.submit{
+	border: 1px solid #ff0000;
+}
