@@ -29,6 +29,7 @@ Also you can see my other sections
 
 = 1.1 = ( Jan 17, 2012 )
 * Remove php short syntax.
+* Validation for the admin bar overlap.
 
 = 1.0 = ( DEC 7, 2011 )
 * Public Release
