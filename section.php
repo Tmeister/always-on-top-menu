@@ -38,57 +38,57 @@ class TmalwaysOnTop extends PageLinesSection {
 		echo load_custom_font( ploption('tm_always_on_top_font', $this->oset), '.menu-always-on-top' );
 	?>
 		<style type="text/css" media="screen">
-			#<?=$this->id?> <?=$target?> {
-				border-top: 1px solid <?=$border?>;
-				border-bottom: 1px solid <?=$border?>;
-				background: <?=$back?>;
+			#<?php echo $this->id?> <?php echo $target?> {
+				border-top: 1px solid <?php echo $border?>;
+				border-bottom: 1px solid <?php echo $border?>;
+				background: <?php echo $back?>;
 			}
 
-			#<?=$this->id?> .content-pad {
+			#<?php echo $this->id?> .content-pad {
 				padding: 0;
 			}
 
-			#<?=$this->id?>.fixed <?=$target?> {
+			#<?php echo $this->id?>.fixed <?php echo $target?> {
 				border-bottom: 0;
 			}
 
-			#<?=$this->id?>.fixed {
+			#<?php echo $this->id?>.fixed {
 				position: fixed;
 				top: -5px;
 				left: 0;
 				width: 100%;
 
-				-webkit-box-shadow: 0 0 10px <?=$shadow?>;
-				-moz-box-shadow: 0 0 10px <?=$shadow?>;
-				box-shadow: 0 0 10px <?=$shadow?>;
-				background: <?=$back?>;
+				-webkit-box-shadow: 0 0 10px <?php echo $shadow?>;
+				-moz-box-shadow: 0 0 10px <?php echo $shadow?>;
+				box-shadow: 0 0 10px <?php echo $shadow?>;
+				background: <?php echo $back?>;
 				z-index: 9999;
 			}
 			ul.menu-always-on-top li ul{
-				border: 1px solid <?=$border?>;
-				background: <?=$sub_bg?>;
+				border: 1px solid <?php echo $border?>;
+				background: <?php echo $sub_bg?>;
 			}
 			ul.menu-always-on-top li ul li{
-				background: <?=$sub_bg?>;
+				background: <?php echo $sub_bg?>;
 			}
 			ul.menu-always-on-top li a{
-				color: <?=$link?>;
-				font-size: <?=$font_size?>px;
+				color: <?php echo $link?>;
+				font-size: <?php echo $font_size?>px;
 			}
 			ul.menu-always-on-top li a:hover{
-				color: <?=$link_hover?>;	
+				color: <?php echo $link_hover?>;	
 			}
 			ul.menu-always-on-top li ul li a{
-				font-size: <?=$submenu_font_size?>px;	
+				font-size: <?php echo $submenu_font_size?>px;	
 			}
-			#<?=$this->id?> .righty{
+			#<?php echo $this->id?> .righty{
 				float: right;	
 			}
-			#<?=$this->id?> .searchform {
+			#<?php echo $this->id?> .searchform {
 			    margin: 10px 5px 0px 0;
 			    width: 190px;
 			}
-			#<?=$this->id?> .searchform .searchfield{
+			#<?php echo $this->id?> .searchform .searchfield{
 				padding:10px 30px 10px 7px;
 				color:#707070;
 				-webkit-border-radius:5px;
@@ -97,7 +97,7 @@ class TmalwaysOnTop extends PageLinesSection {
 				background-color:#f7f7f7;
 				border:1px solid #d5d5d5;
 			}
-			#<?=$this->id?> .searchform input.submit {
+			#<?php echo $this->id?> .searchform input.submit {
 			    top: 8px;
 			    box-shadow:0px 0px 0px transparent;
 			    border:0px;
@@ -106,7 +106,7 @@ class TmalwaysOnTop extends PageLinesSection {
 		</style>
 		<script type="text/javascript">
 			jQuery(function($) {
-				var menu = $('#<?=$this->id?>'),
+				var menu = $('#<?php echo $this->id?>'),
 				pos = menu.offset();
 				menu.addClass('default')
 				$(window).scroll(function(){
