@@ -54,7 +54,11 @@ class TmalwaysOnTop extends PageLinesSection {
 
 			#<?php echo $this->id?>.fixed {
 				position: fixed;
+				<?php if ( !is_user_logged_in() ):?>
 				top: -5px;
+				<?php else: ?>
+				top: 25px;
+				<?php endif; ?>
 				left: 0;
 				width: 100%;
 
