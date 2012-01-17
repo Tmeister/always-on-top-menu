@@ -5,7 +5,7 @@ Main menu, when the menu comes out of the visible area of the page automatically
 * Global configuration
 * Font Type Selector
 * Menu and submenu font size selector
-* 6 iption for color combinations
+* 6 options for color combinations
 * Option to display the search box
 
 [Follow me at Twitter](http://twitter.com/tmeister "Tmeister")  for news of next versions and new releases.
