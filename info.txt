@@ -1,0 +1,34 @@
+== Description ==
+
+Main menu, when the menu comes out of the visible area of the page automatically is fixed to the top of the screen, so it will be always present.
+
+* Global configuration
+* Font Type Selector
+* Menu and submenu font size selector
+* 6 iption for color combinations
+* Option to display the search box
+
+[Follow me at Twitter](http://twitter.com/tmeister "Tmeister")  for news of next versions and new releases.
+
+Also you can see my other sections
+
+* [Parallax Slider](http://www.pagelines.com/store/sections/parallax-slider/ "Parallax Slider")
+* [Social Surf Menu](http://www.pagelines.com/store/sections/social-surf-menu/ "Social Surf Menu")
+* [Infinite Carousel](http://www.pagelines.com/store/sections/infinite-carousel/ "Infinite Carousel")
+
+== Features ==
+
+* Global configuration
+* Font Type Selector
+* Menu and submenu font size selector
+* 6 iption for color combinations
+* Option to display the search box
+
+
+== Changelog ==
+
+= 1.1 = ( Jan 17, 2012 )
+* Remove php short syntax.
+
+= 1.0 = ( DEC 7, 2011 )
+* Public Release
