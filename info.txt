@@ -21,7 +21,7 @@ Also you can see my other sections
 * Global configuration
 * Font Type Selector
 * Menu and submenu font size selector
-* 6 iption for color combinations
+* 6 options for color combinations
 * Option to display the search box
 
 
