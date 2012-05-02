@@ -27,6 +27,10 @@ Also you can see my other sections
 
 == Changelog ==
 
+= 1.1.1 = ( May 02, 2012 )
+* Search icon overlap fixed.
+
+
 = 1.1 = ( Jan 17, 2012 )
 * Remove php short syntax.
 * Validation for the admin bar overlap.
