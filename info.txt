@@ -27,6 +27,9 @@ Also you can see my other sections
 
 == Changelog ==
 
+= 1.1.2 = ( July 31, 2012 )
+* Fix - Background color display in PL 2.2.5
+
 = 1.1.1 = ( May 02, 2012 )
 * Search icon overlap fixed.
 

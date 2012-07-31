@@ -3,7 +3,7 @@
 Section: Menu always On Top
 Author: Enrique Chavez
 Author URI: http://tmeister.net
-Version: 1.1.1
+Version: 1.1.2
 Description: Main menu, when the menu comes out of the visible area of the page automatically is fixed to the top of the screen, so it will be always present.
 Class Name: TmalwaysOnTop
 Cloning: false
@@ -139,12 +139,19 @@ class TmalwaysOnTop extends PageLinesSection {
 	 		return;
 	 	}
  		
- 		if( ! $search ){return;}
-	?>
-		<div class="righty">
-			<?get_search_form()?>	
-		</div>
-	<?
+ 		if( ! $search ){
+ 		?>
+ 			<div class="clear"></div>
+ 		<?php
+ 			return;
+ 		}
+		?>
+			<div class="righty">
+				<?get_search_form()?>	
+			</div>
+			<div class="clear"></div>
+		<?
+
  	}
 
  	function got_options($options){
